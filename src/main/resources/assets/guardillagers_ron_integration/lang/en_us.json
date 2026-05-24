@@ -1,0 +1,6 @@
+{
+  "entity.guardillagers.guard_illager": "Guard Illager",
+  "units.villagers.reignofnether.guard_illager": "Guard Illager",
+  "units.villagers.reignofnether.guard_illager.tooltip1": "Uses the original Guard Illager entity, model, animation and AI.",
+  "units.villagers.reignofnether.guard_illager.tooltip2": "A powerful illager guard trained at the Barracks."
+}

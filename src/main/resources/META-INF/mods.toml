@@ -1,0 +1,39 @@
+modLoader="javafml"
+loaderVersion="[47,)"
+license="All Rights Reserved"
+issueTrackerURL=""
+
+[[mods]]
+modId="guardillagers_ron_integration"
+version="1.0.1"
+displayName="GuardIllagers RoN Integration"
+authors="Codex"
+description='''Integrates the GuardIllagers mod entity as a Reign of Nether Barracks unit.'''
+
+[[dependencies.guardillagers_ron_integration]]
+modId="forge"
+mandatory=true
+versionRange="[47.4.0,)"
+ordering="NONE"
+side="BOTH"
+
+[[dependencies.guardillagers_ron_integration]]
+modId="minecraft"
+mandatory=true
+versionRange="[1.20.1,1.21)"
+ordering="NONE"
+side="BOTH"
+
+[[dependencies.guardillagers_ron_integration]]
+modId="reignofnether"
+mandatory=true
+versionRange="[1.3.2,)"
+ordering="AFTER"
+side="BOTH"
+
+[[dependencies.guardillagers_ron_integration]]
+modId="guardillagers"
+mandatory=true
+versionRange="[1.0.0,)"
+ordering="AFTER"
+side="BOTH"

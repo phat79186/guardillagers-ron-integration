@@ -1,0 +1,89 @@
+plugins {
+    id 'eclipse'
+    id 'idea'
+    id 'maven-publish'
+    id 'net.minecraftforge.gradle' version '[6.0,6.2)'
+}
+
+version = '1.0.1'
+group = 'com.codex.guardillagersronintegration'
+
+base {
+    archivesName = 'guardillagers-ron-integration-1_20_1-' + version
+}
+
+repositories {
+    maven {
+        name = "Minecraft Forge"
+        url = "https://maven.minecraftforge.net/"
+    }
+    maven {
+        name = "SpongePowered"
+        url = "https://repo.spongepowered.org/maven/"
+    }
+}
+
+dependencies {
+    minecraft 'net.minecraftforge:forge:1.20.1-47.4.0'
+    compileOnly 'org.spongepowered:mixin:0.8.5'
+    annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
+}
+
+minecraft {
+    mappings channel: 'official', version: '1.20.1'
+    
+    runs {
+        client {
+            workingDirectory project.file('run/client')
+            property 'forge.logging.markers', 'REGISTRIES'
+            property 'forge.logging.console.level', 'debug'
+            property 'forge.enabledGameTestNamespaces', 'guardillagers_ron_integration'
+            
+            args '--nogui'
+            
+            mods {
+                guardillagers_ron_integration {
+                    source sourceSets.main
+                }
+                reignofnether {
+                    source sourceSets.main
+                }
+                guardillagers {
+                    source sourceSets.main
+                }
+            }
+        }
+        server {
+            workingDirectory project.file('run/server')
+            property 'forge.logging.markers', 'REGISTRIES'
+            property 'forge.logging.console.level', 'debug'
+            property 'forge.enabledGameTestNamespaces', 'guardillagers_ron_integration'
+            
+            mods {
+                guardillagers_ron_integration {
+                    source sourceSets.main
+                }
+                reignofnether {
+                    source sourceSets.main
+                }
+                guardillagers {
+                    source sourceSets.main
+                }
+            }
+        }
+    }
+}
+
+jar {
+    manifest {
+        attributes([
+            "Specification-Title"     : "guardillagers_ron_integration",
+            "Specification-Vendor"    : "Codex",
+            "Specification-Version"   : "1",
+            "Implementation-Title"    : project.name,
+            "Implementation-Version"  : version,
+            "Implementation-Vendor"   : "Codex",
+            "Implementation-Timestamp" : new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
+        ])
+    }
+}

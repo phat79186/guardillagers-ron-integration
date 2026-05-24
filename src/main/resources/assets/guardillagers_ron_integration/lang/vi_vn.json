@@ -1,0 +1,6 @@
+{
+  "entity.guardillagers.guard_illager": "Lính Canh Illager",
+  "units.villagers.reignofnether.guard_illager": "Lính Canh Illager",
+  "units.villagers.reignofnether.guard_illager.tooltip1": "Dùng entity, model, animation và AI gốc của Guard Illager.",
+  "units.villagers.reignofnether.guard_illager.tooltip2": "Lính canh illager mạnh mẽ được huấn luyện tại Doanh Trại."
+}
