@@ -14,7 +14,7 @@ public class EntityRegistrarMixin {
     @Inject(method = "getEntityType", at = @At("HEAD"), cancellable = true)
     private static void guardillagersIntegration$mapGuardIllager(String unitName, CallbackInfoReturnable<EntityType<?>> cir) {
         if (unitName != null && unitName.equals("Guard Illager")) {
-            EntityType<?> entityType = (EntityType<?>) GuardillagersRonIntegrationValues.resolveSourceEntityType();
+            EntityType<?> entityType = GuardillagersRonIntegrationValues.resolveSourceEntityType();
             if (entityType != null) {
                 cir.setReturnValue(entityType);
             }

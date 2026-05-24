@@ -5,11 +5,13 @@
   "compatibilityLevel": "JAVA_17",
   "refmap": "guardillagers_ron_integration.refmap.json",
   "mixins": [
-    "BarracksMixin",
     "EntityRegistrarMixin",
     "GuardIllagerEntityUnitMixin"
   ],
-  "client": [],
+  "client": [
+    "GuardIllagerClientMixin",
+    "BarracksMixin"
+  ],
   "injectors": {
     "defaultRequire": 1
   }
