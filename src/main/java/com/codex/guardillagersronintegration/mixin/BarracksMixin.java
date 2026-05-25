@@ -1,19 +1,32 @@
 package com.codex.guardillagersronintegration.mixin;
 
-import com.codex.guardillagersronintegration.ron.GuardIllagerProductionItems;
-import com.solegendary.reignofnether.building.buildings.villagers.Barracks;
-import com.solegendary.reignofnether.building.production.ProductionItemList;
-import com.solegendary.reignofnether.keybinds.Keybindings;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-@Mixin(Barracks.class)
+import net.minecraft.world.entity.EntityType;
+import java.util.List;
+
+@Mixin(targets = "com.solegendary.reignofnether.block.entity.BarracksBlockEntity")
 public class BarracksMixin {
-    
-    @Inject(method = "giveProductionItems", at = @At("RETURN"))
-    private static void guardillagersIntegration$addProduction(CallbackInfo ci) {
-        ProductionItemList.addProductionItem(GuardIllagerProductionItems.GUARD_ILLAGER, Keybindings.G);
+
+    @Shadow
+    private List<EntityType<?>> productions;
+
+    @Inject(method = "<init>", at = @At("TAIL"))
+    private void injectGuardIllagerToBarracks(CallbackInfo ci) {
+        try {
+            EntityType<?> guardIllager = net.minecraft.core.Registry.ENTITY_TYPE
+                .get(new ResourceLocation("guardillagers", "guard_illager"));
+            
+            if (guardIllager != null && this.productions != null && !this.productions.contains(guardIllager)) {
+                this.productions.add(guardIllager);
+                System.out.println("[GuardIllagers RoN] Successfully added Guard Illager to Barracks");
+            }
+        } catch (Exception e) {
+            System.out.println("[GuardIllagers RoN] Failed to inject Guard Illager to Barracks: " + e.getMessage());
+        }
     }
 }

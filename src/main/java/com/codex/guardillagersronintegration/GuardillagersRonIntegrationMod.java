@@ -1,6 +1,7 @@
 package com.codex.guardillagersronintegration;
 
 import com.codex.guardillagersronintegration.ron.GuardIllagerProductionItems;
+import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
 import org.slf4j.Logger;
 
@@ -10,7 +11,9 @@ public class GuardillagersRonIntegrationMod {
     public static final Logger LOGGER = com.mojang.logging.LogUtils.getLogger();
 
     public GuardillagersRonIntegrationMod() {
+        IEventBus modEventBus = net.minecraftforge.fml.common.Mod.EventBusSubscriber.bus();
+        modEventBus.register(com.codex.guardillagersronintegration.ModEntityAttributes.class);
         GuardIllagerProductionItems.register();
-        LOGGER.info("RoN Guard Illager Integration loaded");
+        LOGGER.info("RoN Guard Illager Integration loaded - Using Forge Events for safe registration");
     }
 }
