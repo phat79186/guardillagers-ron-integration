@@ -1,0 +1,41 @@
+name: Build JAR
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'blacksmith-epic-patch/**'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+
+    - name: Set up JDK 17
+      uses: actions/setup-java@v4
+      with:
+        java-version: '17'
+        distribution: 'temurin'
+        cache: 'gradle'
+
+    - name: Build Blacksmith Epic Patch
+      run: |
+        cd blacksmith-epic-patch
+        chmod +x gradlew
+        ./gradlew build
+        ls -la build/libs/
+
+    - name: Upload JAR
+      uses: actions/upload-artifact@v4
+      with:
+        name: blacksmith-epic-patch-jar
+        path: blacksmith-epic-patch/build/libs/*.jar
+
+    - name: Create Release
+      uses: softprops/action-gh-release@v1
+      if: startsWith(github.ref, 'refs/tags/')
+      with:
+        files: blacksmith-epic-patch/build/libs/*.jar
