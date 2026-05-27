@@ -1,0 +1,26 @@
+{
+  "version": "1.0.8",
+  "type": "safe_lazy_loading",
+  "description": "Epic Knights armor mapping with lazy runtime loading",
+  "armor_sets": {
+    "tier_1_leather": {
+      "helmet": "magistuarmory:kettle_hat",
+      "chestplate": "magistuarmory:reinforced_chainmail_armor",
+      "leggings": "magistuarmory:reinforced_chainmail_leggings",
+      "boots": "magistuarmory:reinforced_chainmail_boots"
+    },
+    "tier_2_iron": {
+      "helmet": "magistuarmory:decorated_armet",
+      "chestplate": "magistuarmory:knight_armor",
+      "leggings": "magistuarmory:knight_leggings",
+      "boots": "magistuarmory:knight_boots"
+    }
+  },
+  "safety": {
+    "no_mixin": true,
+    "lazy_runtime_loading": true,
+    "null_safe": true,
+    "optional_dependencies": true,
+    "no_early_registry_access": true
+  }
+}
